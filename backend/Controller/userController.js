@@ -70,11 +70,11 @@ export const getUserProfile = async (req,res)=>{
         message: "Not found"
       })
     }
-    const {password,...res} = user._doc
+    const {password,...rest} = user._doc
     return res.status(200).json({
       success:true,
       message: "Profile info",
-      data:user
+      data:{...rest}
     })
   } catch (error) {
     return res.status(500).json({

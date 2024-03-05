@@ -22,12 +22,14 @@ export const authenticate = async(req,res,next)=>{
     //verify token 
     const decoded = jwt.verify(token,process.env.JWT_SECRET_KEY);
 
+    // console.log(1);
     // set req to use restrict bellow
     req.userId = decoded.id;
     req.role = decoded.role;
 
     next();
   } catch (error) {
+    // console.log(error);
     if(error.name === 'TokenExpiredError'){
       return res.status(401).json({
         message: 'Token is expired'
@@ -54,6 +56,7 @@ export const restrict = roles =>  async (req,res,next)=>{
   if(doctor){
     user = doctor
   }
+  // console.log(user);
   if(!roles.includes(user.role)){
     return res.status(401).json({
       success:false,

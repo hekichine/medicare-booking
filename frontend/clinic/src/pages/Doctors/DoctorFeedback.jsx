@@ -4,7 +4,7 @@ import { formateDate } from "../../utils/formateDate";
 import {AiFillStar} from 'react-icons/ai'
 import FeedbackForm from "./FeedbackForm";
 
-const DoctorFeedback = () => {
+const DoctorFeedback = ({reviews}) => {
 
   const [showFeedbackForm,setShowFeedbackForm] = useState(false);
 

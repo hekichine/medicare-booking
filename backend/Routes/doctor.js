@@ -14,7 +14,7 @@ router.get('/:id',authenticate,restrict(['admin','doctor']),getSingleDoctor);
 
 router.get('/',authenticate,restrict(['admin','doctor']),getAllDoctor);
 
-router.put('/:id',authenticate,restrict(['admin']),updateDoctor);
+router.put('/:id',authenticate,restrict(['admin','doctor']),updateDoctor);
 
 router.get('/profile/me',authenticate,restrict(['doctor','admin']),getDoctorProfile)
 

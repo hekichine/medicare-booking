@@ -7,6 +7,7 @@ import Tabs from "./Tabs";
 import starIcon from '../../assets/images/Star.png'
 import DoctorAbout from "../../pages/Doctors/DoctorAbout";
 import Profile from "./Profile";
+import Appointments from "./Appointments";
 
 const Dashboard = () => {
   const { data, loading, error } = useFetchData(
@@ -53,28 +54,26 @@ const Dashboard = () => {
                         </figure>
                         <div className="">
                           <span className="bg-[#ccf0f3] text-irisBlueColor py-1 px-4 lg:py-2 lg:px-6 rounded text-[12px] leading-4 lg:text-[16px] lg:leading-6 font-semibold">
-                            {data?.specialization} Doctor
+                            {data?.specialization} 
                           </span>
-                          <h3 className="text-[22px] leading-9 font-bold text-headingColor mt-3">sadasd</h3>
+                          <h3 className="text-[22px] leading-9 font-bold text-headingColor mt-3">{data.name}</h3>
                           <div className="flex items-center gap-[6px]">
                             <span className="flex items-center gap-[6px] text-headingColor leading-5 lg:text-[16px] lg:leading-6 font-semibold">
                               <img src={starIcon} alt="" />
-                            4.5
+                            {data.averageRating}
                             </span>
                             <span className="text-textColor leading-5 lg:text-[14px] lg:leading-6 font-semibold">
-                             (233)
+                            ({data.totalRating})
                             </span>
                           </div>
-                          <p className="text__para font-[15px] lg:max-w-[390px] leading-6">Doctor bio</p>
+                          <p className="text__para font-[15px] lg:max-w-[390px] leading-6">{data?.bio}</p>
                         </div>
                       </div>
                       <DoctorAbout name={data.name} about={data.about} qualifications= {data.qualifications}  experiences={data.experiences} />
                     </div>
                   )}
-                  {tab === "appointments" && (
-                    <div className="">appointments</div>
-                  )}
-                  {tab === "settings" && <Profile />}
+                  {tab === "appointments" && <Appointments appointments={data.appointments} /> }
+                  {tab === "settings" && <Profile doctorData={data} />}
                 </div>
               </div>
             </div>
